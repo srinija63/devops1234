@@ -4,7 +4,7 @@ pipeline{
         stage('checkout'){
             steps{
                 echo 'docker repo'
-                git url:' '     
+                git url:'https://github.com/srinija63/devops1234.git'     
                 branch:'master' 
             }
         }
