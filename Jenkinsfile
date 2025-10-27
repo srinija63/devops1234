@@ -5,7 +5,6 @@ pipeline{
 	steps{
 	echo "Docker repo"
 	git url:"https://github.com/srinija63/devops1234.git"
-	branch:"master"
 	}
 	}
 	stage('Build'){
