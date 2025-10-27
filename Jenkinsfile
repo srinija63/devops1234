@@ -1,34 +1,34 @@
 pipeline{
-    agent any
-    stages{
-        stage('checkout'){
-            steps{
-                echo 'docker repo'
-                git url:'https://github.com/srinija63/devops1234.git'     
-                branch:'master' 
-            }
-        }
-        stage('build'){
-            steps{
-                echo 'building docker image'
-                bat 'docker build -t mywebapp .'
-            }
-        }
-        stage('run'){
-            steps{
-                echo 'running docker image'
-                bat 'docker rm -f mycontainer || exit 0'
-                bat 'docker run -d -p 5000:5000 --name mycontainer mywebapp'
-            }
-        }
-        post{
-            success{
-                echo 'pipeline successful'
-            }
-            failure{
-                echo 'pipeline failed'
-            }
-            
-        }
-    }
+	agent any
+	stages{
+	stage('checkout'){
+	steps{
+	echo "Cloning repo"
+	git url:"https://github.com/srinija63/devops1234.git"
+	branch:'master'
+	}
+	}
+	stage('Build'){
+	steps{
+	echo "Build Docker Image"
+	bat "docker build -t mywebapp ."
+	}
+	}
+	stage('Run'){
+	steps{
+	echo "Run application in Docker Container"
+	bat "docker rm -f mycontainer || exit 0"
+	bat "docker run -d -p 5001:5001 --name mycontainer mywebapp"
+	}
+	}
+	}
+	post{
+	success{
+	echo 'Pipeline finished successfully!'
+	}
+	failure{
+	echo 'Pipeline failed.Please check the logs'
+	}
+	
+	}
 }
