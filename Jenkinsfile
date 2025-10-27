@@ -3,7 +3,7 @@ pipeline{
 	stages{
 	stage('checkout'){
 	steps{
-	echo "Cloning repo"
+	echo "Docker repo"
 	git url:"https://github.com/srinija63/devops1234.git"
 	branch:'master'
 	}
@@ -18,7 +18,7 @@ pipeline{
 	steps{
 	echo "Run application in Docker Container"
 	bat "docker rm -f mycontainer || exit 0"
-	bat "docker run -d -p 5001:5001 --name mycontainer mywebapp"
+	bat "docker run -d -p 5000:5000 --name mycontainer mywebapp"
 	}
 	}
 	}
@@ -29,6 +29,5 @@ pipeline{
 	failure{
 	echo 'Pipeline failed.Please check the logs'
 	}
-	
 	}
 }
